@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Portfolio Website</title>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("navbar.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.body.insertAdjacentHTML("afterbegin", data);
+
+            // Highlight active link
+            const links = document.querySelectorAll("nav a");
+            const currentPage = window.location.pathname.split("/").pop();
+            links.forEach((link) => {
+              link.classList.toggle(
+                "active",
+                link.getAttribute("href") === currentPage
+              );
+            });
+          })
+          .catch((error) => console.error("Error loading navbar:", error));
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const aboutBtn = document.getElementById("aboutBtn");
+        const aboutPopup = document.getElementById("aboutPopup");
+        const closePopup = document.getElementById("closePopup");
+
+        aboutBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          aboutPopup.classList.add("show");
+        });
+
+        closePopup.addEventListener("click", () => {
+          aboutPopup.classList.remove("show");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <section class="home">
+      <div class="home-img">
+        <img src="putra..jpg" alt="" />
+      </div>
+      <div class="home-content">
+        <h1 style="font-size: 29px">
+          Hi, It's <span>Nugraha Putra Juliansyah</span>
+        </h1>
+        <h3 class="typing-text">I'm a <span></span></h3>
+        <p></p>
+        <div class="social-icons">
+          <a href="https://github.com/NugrahaaPutraaa"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.instagram.com/nptrraaa_/profilecard/?igsh=MXh3YmFsMWkwbnFnYw=="><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <a href="#" class="btn" id="aboutBtn">About</a>
+
+        <div class="popup" id="aboutPopup">
+          <div class="popup-content">
+            <span class="close-btn" id="closePopup">&times;</span>
+            <h2 style="color: white">About Me</h2>
+            <p>
+              Nama saya Nugraha Putra Juliansyah, mahasiswa Universitas
+              Pasundan jurusan Teknik Informatika, angkatan 2024. Sepanjang
+              studi saya, saya telah mempelajari berbagai mata pelajaran seperti
+              Infrastruktur Teknologi Dasar, Perancangan Basis Data , Internet Dan Teknologi Web,
+              Metode Berpikir Komputasi, dan Literasi Digital. 
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
